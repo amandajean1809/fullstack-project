@@ -35,7 +35,11 @@ app.use(express.static('public'));
 // app.use('/activities', activityController);
 
 app.get('/activities', (req, res) => {
-  res.render('index.ejs');
+  Activity.find({}, (error, allActivities) => {
+    res.render('index.ejs', {
+      activities : allActivities
+    });
+  });
 });
 
 app.get('/activities/seed', (req, res) => {

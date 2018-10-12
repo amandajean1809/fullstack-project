@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
+body, body * {
+  font-family: 'PT Sans', serif;
+}
+table th {
+  text-align: center;
+}
+
+.table {
+  margin: auto;
+  width: 50%;
+}

@@ -2,10 +2,32 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <% include ../partials/head.ejs %>
-    <title></title>
+    <link rel="stylesheet" href="../main.css" />
+    <link rel="stylesheet"
+     href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+     <title>Activity Tracker</title>
   </head>
   <body>
-    <h1>Activity Index Page</h1>
+    <h1 class="text-center">Activity Index Page</h1>
+    <div class="container-fluid">
+      <table class="table table-bordered">
+        <tr>
+          <th>Name</th>
+          <th>Activity</th>
+          <th>Time</th>
+          <th>Date</th>
+        </tr>
+        <tbody>
+          <% for (let i = 0; i < activities.length; i++) { %>
+          <tr>
+            <td> <%= activities[i].name %></td>
+            <td> <%= activities[i].activity %></td>
+            <td> <%= activities[i].time %> hr</td>
+            <td> <%= activities[i].date %></td>
+          </tr>
+          <% } %>
+      </tbody>
+      </table>
+    </div>
   </body>
 </html>

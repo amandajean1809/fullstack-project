@@ -4,7 +4,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require ('mongoose');
-const Activity = require('./models/activities.js');
+// const Activity = require('./models/activities.js');
 const methodOverride  = require('method-override');
 
 const db = mongoose.connection;
@@ -28,56 +28,11 @@ app.use(express.urlencoded({ extended: false }));// extended: false - does not a
 //use public folder for static assets
 app.use(express.static('public'));
 //
-// app.use(express.json());// returns middleware that only parses JSON
+app.use(express.json());// returns middleware that only parses JSON
 //
 //
-// const activityController = require('./controllers/activities.js');
-// app.use('/activities', activityController);
-
-app.get('/activities', (req, res) => {
-  Activity.find({}, (error, allActivities) => {
-    res.render('index.ejs', {
-      activities : allActivities
-    });
-  });
-});
-
-app.get('/activities/seed', (req, res) => {
-  Activity.create([
-    {
-      name: 'Cyndy',
-      activity: 'biking',
-      time: 1.0,
-      date: '2018-10-10'
-    },
-    {
-      name: 'Judy',
-      activity: 'running',
-      time: 1.5,
-      date: '2018-10-9'
-    },
-    {
-      name: 'Mimi',
-      activity: 'swimming',
-      time: .75,
-      date: '2018-10-5'
-    }
-  ], (err, data) => {
-    res.redirect('/activities');
-  });
-});
-
-app.get('/activities/new', (req, res) => {
-  res.render('new.ejs');
-});
-
-app.get('/activities/:id', (req, res) => {
-  res.render('show.ejs');;
-});
-
-app.get('/activities/:id/edit', (req, res) => {
-  res.render('edit.ejs');
-});
+const activityController = require('./controllers/activities.js');
+app.use('/activities', activityController);
 
 //___________________
 // Listener
